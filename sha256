@@ -123,6 +123,10 @@ class sha256(object):
         return copy.deepcopy(self)
 
 if __name__ == '__main__':
+    if '-h' in sys.argv or '--help' in sys.argv or '-help' in sys.argv:
+        print "Usage: %s FILE"
+        sys.exit()
+
     target = sys.argv[1]
 
     if not os.path.exists(target):
