@@ -13,12 +13,16 @@ import sys
 
 def hash_file(file_path):
     checksum = sha256()
-    with open(file_path, 'rb') as f:
+    try:
+        f = open(file_path, 'rb')
+
         def chunker():
             return f.read(128 * checksum.block_size)
 
         for chunk in iter(chunker, ''):
             checksum.update(chunk)
+    finally:
+        f.close()
 
     return checksum.hexdigest()
 
